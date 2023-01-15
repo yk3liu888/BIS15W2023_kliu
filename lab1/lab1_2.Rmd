@@ -47,6 +47,22 @@ Order of operations applies and you don't need to add an '=' sign.
 ```{r}
 (4*12)/2
 ```
+```{r}
+2*3
+```
+```{r}
+factorial(10)
+2^10
+# Expression or formula
+f = expression(x^2 + 5*x + 1)
+  
+# Derivative
+cat("Using deriv() function:\n")
+print(deriv(f, "x"))
+  
+cat("\nUsing D() function:\n")
+print(D(f, 'x'))
+```
 
 Statistics are what R was originally written for and there are thousands of packages for specialized statistics depending on your needs.  
 
@@ -63,6 +79,9 @@ mean(x)
 We can do the same thing for median.  
 ```{r}
 median(x)
+```
+```{r}
+sd(x)
 ```
 
 ## RMarkdown  
