@@ -1,0 +1,82 @@
+---
+title: "lab 3 practice"
+author: "Kellie Liu"
+date: "2023-01-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+plant_1_h <- 30.7
+plant_2_h <- 37.6
+plant_3_h <- 28.4
+plant_4_h <- NA
+plant_5_h <- 33.2
+```
+```{r}
+plant_1_m <- 4
+plant_2_m <- 5.2
+plant_3_m <- 3.7
+plant_4_m <- NA
+plant_5_m <- 4.6
+```
+```{r}
+plants_height <- c(plant_1_h, plant_2_h, plant_3_h, plant_4_h, plant_5_h)
+plants_height
+```
+```{r}
+plants_mass <- c(plant_1_m, plant_2_m, plant_3_m, plant_4_m, plant_5_m)
+plants_mass
+```
+```{r}
+measures <- c(plants_height, plants_mass)
+measures
+```
+```{r}
+samples <- c()
+```
+
+```{r}
+plant_experiment <- c(plants_height, plants_mass)
+plant_experiment
+```
+
+```{r}
+plants_matrix <- matrix(plant_experiment, nrow = 5, byrow = F)
+plants_matrix
+```
+###6 Name the columns and rows
+```{r}
+colnames(plants_matrix) <-
+rownames(plants_matrix) <-
+```
+```{r}
+plant_means <- colMeans(plants_matrix)
+```
+```{r}
+plants_matrix_final <- rbind(plant_matrix, plant_means)
+```
+
