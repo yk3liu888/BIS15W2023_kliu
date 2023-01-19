@@ -52,6 +52,10 @@ names(fish)
 ## Tidyverse
 The [tidyverse](www.tidyverse.org) is an "opinionated" collection of packages that make workflow in R easier. The packages operate more intuitively than base R commands and share a common organizational philosophy.  
 ![*Data Science Workflow in the Tidyverse.*](tidy-1.png)  
+#every variables has its own column
+#every observations has its own row
+#every values has its own cell
+# R is to clean and organize data
 
 ## dplyr
 The first package that we will use that is part of the tidyverse is `dplyr`. `dplyr` is used to transform data frames by extracting, rearranging, and summarizing data such that they are focused on a question of interest. This is very helpful,  especially when wrangling large data, and makes dplyr one of most frequently used packages in the tidyverse. The two functions we will use most are `select()` and `filter()`.  
@@ -66,16 +70,21 @@ We are only interested in lakeid and scalelength.
 ```{r}
 select(fish, "lakeid", "scalelength")
 ```
+# Only interested in lakeid and annnumber
+```{r}
+select(fish, "lakeid", "annnumber")
+```
+# Putting quotes to tell R that they are not objects
 
 To add a range of columns use `start_col:end_col`.
 ```{r}
 fish
 ```
-
+# Anything between fishid and length
 ```{r}
 select(fish, fish_id:length)
 ```
-
+# Exclude a couple
 The - operator is useful in select. It allows us to select everything except the specified variables.
 ```{r}
 select(fish, -fish_id, -annnumber, -length, -radii_length_mm)
@@ -87,10 +96,11 @@ For very large data frames with lots of variables, `select()` utilizes lots of d
 names(fish)
 ```
 
+# Names contain length
 ```{r}
 select(fish, contains("length"))
 ```
-
+# Names start with radii
 When columns are sequentially named, `starts_with()` makes selecting columns easier.
 ```{r}
 select(fish, starts_with("radii"))
@@ -114,6 +124,7 @@ select(fish, ends_with("id"))
 select(fish, contains("fish"))
 ```
 
+# Names start with a and end with er
 We won't cover [regex](https://en.wikipedia.org/wiki/Regular_expression) in this class, but the following code is helpful when you know that a column contains a letter (in this case "a") followed by a subsequent string (in this case "er").  
 ```{r}
 select(fish, matches("a.+er"))
@@ -142,42 +153,59 @@ mammals <- readr::read_csv("data/mammal_lifehistories_v2.csv")
 
 1. Use one or more of your favorite functions to assess the structure of the data.  
 ```{r}
+mammals
+```
+```{r}
+glimpse(mammals)
+```
 
+```{r}
+select(mammals, contains("mass"))
+select(mammals, ends_with("s"))
+select_if(mammals, is.character)
 ```
 
 2. Are there any NAs? Are you sure? Try taking an average of `max. life` as a test.  
 ```{r}
-
+anyNA(mammals)
+mean(mammals$`max. life`)
 ```
 
 3. What are the names of the columns in the `mammals` data?
 ```{r}
-
+names(mammals)
 ```
 
 4. Rename any columns that have capitol letters or punctuation issues.  
 ```{r}
-
+mammals_new <- rename(mammals,
+                       genus = "Genus",
+                       afr = "AFR",
+                      wean_mass = "wean mass",
+                      max_life = "max. life",
+                      litters_year =  "litters/year",
+                      litter_size = "litter size")
+mammals_new
 ```
 
 5. We are only interested in the variables `genus`, `species`, and `mass`. Use `select()` to build a new dataframe `mass` focused on these variables.
 ```{r}
-
+select(mammals_new, "genus", "species", "mass")
 ```
 
 6. What if we only wanted to exclude `order` and `family`? Use the `-` operator to make the code efficient.
 ```{r}
-
+select(mammals, -"order", -"family")
 ```
 
 7. Select the columns that include "mass" as part of the name.  
 ```{r}
-
+select(mammals_new, contains("mass"))
 ```
 
 8. Select all of the columns that are of class `character`.  
 ```{r}
-
+select_if(mammals, is.character)
 ```
 
 ## Other
