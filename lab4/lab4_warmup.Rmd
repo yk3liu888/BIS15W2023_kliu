@@ -1,0 +1,49 @@
+---
+title: "lab 4 warm-up"
+author: "Kellie Liu"
+date: "2023-01-19"
+output: html_document
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load the packages
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Dimension of 'penguins'
+```{r}
+dim(penguins)
+glimpse(penguins)
+```
+
+## Names of 'penguins'
+```{r}
+names(penguins)
+```
+
+## Individulas
+```{r}
+table(penguins$island)
+```
+
+## Mean body mass
+```{r}
+bm <- (penguins$body_mass_g)
+mean(bm, na.rm = T)
+```
+```{r}
+mean(penguins$body_mass_g, na.rm = T)
+```
+
+
+
