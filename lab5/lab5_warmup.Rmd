@@ -1,0 +1,49 @@
+---
+title: "lab5_warmup"
+output: html_document
+date: "2023-01-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+bison <- readr::read_csv("data/bison.csv")
+bison
+```
+```{r}
+glimpse(bison)
+```
+```{r}
+bison_new <- select(bison, "animal_code", "animal_sex", "animal_weight", "animal_yob")
+bison_new
+```
+```{r}
+bison_yob <- filter(bison_new, animal_yob>=1980 & animal_yob<=1990)
+bison_yob
+```
+
+```{r}
+table(bison_yob$animal_sex)
+```
+Males or females larger?
+```{r}
+bison_m <- filter(bison, animal_sex == "M")
+bison_m
+bison_f <- filter(bison, animal_sex == "F")
+bison_f
+```
+```{r}
+mean(bison_m$animal_weight, na.rm = T)
+```
+```{r}
+mean(bison_f$animal_weight)
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
