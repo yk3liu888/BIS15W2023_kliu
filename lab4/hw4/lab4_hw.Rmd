@@ -125,21 +125,24 @@ Alces deer is the largest. Its common name is moose.
 
 **10. As measured by the data, which snake species has the smallest homerange? Show all of your work, please. Look this species up online and tell me about it!** **Snake is found in taxon column**    
 ```{r}
+names(homerange)
+```
+```{r}
 snake <- filter(homerange, taxon == "snakes")
 snake
 ```
 ```{r}
-snake_1 <- select(snake, "mean.hra.m2", "log10.mass", "family", "genus", "species")
+snake_1 <- select(snake, "log10.hra", "family", "genus", "species")
 snake_1
 ```
 ```{r}
-arrange(snake_1, mean.hra.m2)
+arrange(snake_1, log10.hra)
 ```
 ```{r}
 select(snake, "common.name","species")
 ```
 
-Vermis, also called western worm snake, has the smallest homerange. It consists of black rear and red stomach. It's small and nonvenomous. People don't usually see them because they love to dig into soil and live within it. Their major diet is earthworms and they originate in the U.S.
+Bitis schneideri, also called namaqua dwarf adder, has the smallest homerange. It consists of sandy color and dots pattern throughout the body. It's venomous and is smallest in the genus Bitis. They prefer to live around coastal dunes with low seasonality. Swelling and pain occur around wound when got bitten, but not fatal.
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   

@@ -2445,6 +2445,25 @@ Alces deer is the largest. Its common name is moose.
 **10. As measured by the data, which snake species has the smallest homerange? Show all of your work, please. Look this species up online and tell me about it!** **Snake is found in taxon column**    
 
 ```r
+names(homerange)
+```
+
+```
+##  [1] "taxon"                      "common.name"               
+##  [3] "class"                      "order"                     
+##  [5] "family"                     "genus"                     
+##  [7] "species"                    "primarymethod"             
+##  [9] "N"                          "mean.mass.g"               
+## [11] "log10.mass"                 "alternative.mass.reference"
+## [13] "mean.hra.m2"                "log10.hra"                 
+## [15] "hra.reference"              "realm"                     
+## [17] "thermoregulation"           "locomotion"                
+## [19] "trophic.guild"              "dimension"                 
+## [21] "preymass"                   "log10.preymass"            
+## [23] "PPMR"                       "prey.size.reference"
+```
+
+```r
 snake <- filter(homerange, taxon == "snakes")
 snake
 ```
@@ -2472,45 +2491,45 @@ snake
 ```
 
 ```r
-snake_1 <- select(snake, "mean.hra.m2", "log10.mass", "family", "genus", "species")
+snake_1 <- select(snake, "log10.hra", "family", "genus", "species")
 snake_1
 ```
 
 ```
-## # A tibble: 41 × 5
-##    mean.hra.m2 log10.mass family     genus      species                 
-##          <dbl>      <dbl> <chr>      <chr>      <chr>                   
-##  1         700      0.539 colubridae carphopis  vermis                  
-##  2         253      0.562 colubridae carphopis  viridis                 
-##  3      151000      2.75  colubridae coluber    constrictor             
-##  4      114500      2.16  colubridae coluber    constrictor flaviventris
-##  5        6476      0.954 colubridae diadophis  punctatus               
-##  6     1853000      2.65  colubridae drymarchon couperi                 
-##  7      150600      2.41  colubridae elaphe     guttata emoryi          
-##  8       46000      2.81  colubridae elaphe     obsoleta                
-##  9      516375      2.17  colubridae heterodon  platirhinos             
-## 10      110900      2.37  colubridae hierophis  viridiflavus            
+## # A tibble: 41 × 4
+##    log10.hra family     genus      species                 
+##        <dbl> <chr>      <chr>      <chr>                   
+##  1      2.85 colubridae carphopis  vermis                  
+##  2      2.40 colubridae carphopis  viridis                 
+##  3      5.18 colubridae coluber    constrictor             
+##  4      5.06 colubridae coluber    constrictor flaviventris
+##  5      3.81 colubridae diadophis  punctatus               
+##  6      6.27 colubridae drymarchon couperi                 
+##  7      5.18 colubridae elaphe     guttata emoryi          
+##  8      4.66 colubridae elaphe     obsoleta                
+##  9      5.71 colubridae heterodon  platirhinos             
+## 10      5.04 colubridae hierophis  viridiflavus            
 ## # … with 31 more rows
 ```
 
 ```r
-arrange(snake_1, mean.hra.m2)
+arrange(snake_1, log10.hra)
 ```
 
 ```
-## # A tibble: 41 × 5
-##    mean.hra.m2 log10.mass family     genus       species     
-##          <dbl>      <dbl> <chr>      <chr>       <chr>       
-##  1        200       1.23  viperidae  bitis       schneideri  
-##  2        253       0.562 colubridae carphopis   viridis     
-##  3        600       1.33  colubridae thamnophis  butleri     
-##  4        700       0.539 colubridae carphopis   vermis      
-##  5       2400       1.99  viperidae  vipera      latastei    
-##  6       2614.      2.29  viperidae  gloydius    shedaoensis 
-##  7       6476       0.954 colubridae diadophis   punctatus   
-##  8      10655       2.27  viperidae  agkistrodon piscivorous 
-##  9      15400       1.80  colubridae oocatochus  rufodorsatus
-## 10      17400       2.57  colubridae pituophis   catenifer   
+## # A tibble: 41 × 4
+##    log10.hra family     genus       species     
+##        <dbl> <chr>      <chr>       <chr>       
+##  1      2.30 viperidae  bitis       schneideri  
+##  2      2.40 colubridae carphopis   viridis     
+##  3      2.78 colubridae thamnophis  butleri     
+##  4      2.85 colubridae carphopis   vermis      
+##  5      3.38 viperidae  vipera      latastei    
+##  6      3.42 viperidae  gloydius    shedaoensis 
+##  7      3.81 colubridae diadophis   punctatus   
+##  8      4.03 viperidae  agkistrodon piscivorous 
+##  9      4.19 colubridae oocatochus  rufodorsatus
+## 10      4.24 colubridae pituophis   catenifer   
 ## # … with 31 more rows
 ```
 
@@ -2535,7 +2554,7 @@ select(snake, "common.name","species")
 ## # … with 31 more rows
 ```
 
-Vermis, also called western worm snake, has the smallest homerange. It consists of black rear and red stomach. It's small and nonvenomous. People don't usually see them because they love to dig into soil and live within it. Their major diet is earthworms and they originate in the U.S.
+Bitis schneideri, also called namaqua dwarf adder, has the smallest homerange. It consists of sandy color and dots pattern throughout the body. It's venomous and is smallest in the genus Bitis. They prefer to live around coastal dunes with low seasonality. Swelling and pain occur around wound when got bitten, but not fatal.
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
