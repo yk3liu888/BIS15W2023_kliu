@@ -1,10 +1,11 @@
 ---
 title: "Lab 4 Homework"
-author: "Please Add Your Name Here"
+author: "Kellie Liu"
 date: "`r Sys.Date()`"
 output:
   html_document:
     theme: spacelab
+    keep_md: yes
     toc: no
 ---
 
@@ -111,7 +112,7 @@ deer_1 <- filter(homerange, family == "cervidae")
 deer_1
 ```
 ```{r}
-deer <- select(deer, "mean.mass.g", "log10.mass", "family", "genus", "species")
+deer <- select(deer_1, "mean.mass.g", "log10.mass", "family", "genus", "species")
 deer
 ```
 ```{r}
