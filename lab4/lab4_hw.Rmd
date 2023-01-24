@@ -53,6 +53,21 @@ class(homerange)
 ```
 
 **3. Change the class of the variables `taxon` and `order` to factors and display their levels.**  
+```{r}
+homerange$taxon <- as.factor(homerange$taxon)
+homerange$taxon
+```
+```{r}
+class(homerange$taxon)
+```
+
+```{r}
+homerange$order <- as.factor(homerange$order)
+homerange$order
+```
+```{r}
+class(homerange$order)
+```
 
 **4. What taxa are represented in the `homerange` data frame? Make a new data frame `taxa` that is restricted to taxon, common name, class, order, family, genus, species.**  
 ```{r}
@@ -61,16 +76,69 @@ taxa
 ```
 
 **5. The variable `taxon` identifies the large, common name groups of the species represented in `homerange`. Make a table the shows the counts for each of these `taxon`.**  
+```{r}
+table(homerange$taxon)
+```
+
 
 **6. The species in `homerange` are also classified into trophic guilds. How many species are represented in each trophic guild.**  
+```{r}
+table(homerange$trophic.guild)
+```
 
 **7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.**  
+```{r}
+herbivores <- filter(homerange, trophic.guild == "herbivore")
+herbivores
+```
+```{r}
+carnivore <- filter(homerange, trophic.guild == "carnivore")
+carnivore
+```
 
 **8. Do herbivores or carnivores have, on average, a larger `mean.hra.m2`? Remove any NAs from the data.**  
+```{r}
+mean(herbivores$mean.hra.m2, na.rm = T)
+```
+```{r}
+mean(carnivore$mean.hra.m2, na.rm = T)
+```
+Herbivores have larger `mean.hra.m2` on average.
 
 **9. Make a new dataframe `deer` that is limited to the mean mass, log10 mass, family, genus, and species of deer in the database. The family for deer is cervidae. Arrange the data in descending order by log10 mass. Which is the largest deer? What is its common name?**  
+```{r}
+deer_1 <- filter(homerange, family == "cervidae")
+deer_1
+```
+```{r}
+deer <- select(deer, "mean.mass.g", "log10.mass", "family", "genus", "species")
+deer
+```
+```{r}
+arrange(deer, log10.mass)
+```
+```{r}
+select(deer_1, "common.name","species")
+```
+Alces deer is the largest. Its common name is moose.
 
 **10. As measured by the data, which snake species has the smallest homerange? Show all of your work, please. Look this species up online and tell me about it!** **Snake is found in taxon column**    
+```{r}
+snake <- filter(homerange, taxon == "snakes")
+snake
+```
+```{r}
+snake_1 <- select(snake, "mean.hra.m2", "log10.mass", "family", "genus", "species")
+snake_1
+```
+```{r}
+arrange(snake_1, mean.hra.m2)
+```
+```{r}
+select(snake, "common.name","species")
+```
+
+Vermis, also called western worm snake, has the smallest homerange. It consists of black rear and red stomach. It's small and nonvenomous. People don't usually see them because they love to dig into soil and live within it. Their major diet is earthworms and they originate in the U.S.
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
