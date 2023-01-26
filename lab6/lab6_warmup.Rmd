@@ -1,0 +1,53 @@
+---
+title: "lab6_warmup"
+author: "Kellie Liu"
+date: "2023-01-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library("tidyverse")
+library("janitor")
+```
+```{r}
+ecosphere <-
+  read_csv("data/ecs21351-sup-0003-SupplementS1.csv", skip=2)
+```
+
+```{r}
+names(ecosphere)
+```
+
+```{r}
+ecosphere <- janitor::clean_names(ecosphere)
+ecosphere
+```
+
+```{r}
+glimpse(ecosphere)
+```
+```{r}
+summary(ecosphere)
+```
+
+```{r}
+table(ecosphere$diet)
+```
+# or
+```{r}
+ecosphere %>% 
+  tabyl(diet) %>% 
+  arrange(desc(n))
+```
+
+```{r}
+ecosphere %>% 
+  filter(diet == "Vegetation") %>% 
+  select(family, diet) %>% 
+  tabyl(diet)
+```
+
