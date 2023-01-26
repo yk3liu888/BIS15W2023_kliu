@@ -44,7 +44,7 @@ names(mammals)
 
 Let's rename some of the `mammals` variables.  
 ```{r}
-mammals <- rename(mammals, genus="Genus", wean_mass="wean mass", max_life= "max. life", litter_size="litter size %>% ", litters_per_year="litters/year")
+mammals <- rename(mammals, genus="Genus", wean_mass="wean mass", max_life= "max. life", litter_size="litter size", litters_per_year="litters/year")
 ```
 
 ```{r}
