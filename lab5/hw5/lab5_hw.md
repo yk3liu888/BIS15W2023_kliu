@@ -543,7 +543,7 @@ superhero_info %>%
 ## #   abbreviated variable names ¹​eye_color, ²​hair_color, ³​pulisher, ⁴​skin_color,
 ## #   ⁵​alignment
 ```
-Giganta is heavy and short. She has the highest height to weight ratio.
+Giganta is heavy and short. Groot has the highest height to weight ratio.
 #arrange(height/weight) also works.
 
 ## `superhero_powers`
