@@ -1,6 +1,6 @@
 ---
 title: "Midterm 1"
-author: "Please Add Your Name Here"
+author: "Kellie Liu"
 date: "`r Sys.Date()`"
 output:
   html_document: 
@@ -92,6 +92,7 @@ ducks %>%
   summarise(mean_body_mass = mean(log10_mass)) %>% 
   arrange(desc(mean_body_mass))
 ```
+As migratory strategy more stationary, birds have more body mass.
 
 Problem 9. (2 points) Accipitridae is the family that includes eagles, hawks, kites, and osprey. First, make a new object `eagles` that only includes species in the family Accipitridae. Next, restrict these data to only include the variables common_name, scientific_name, and population_size.
 ```{r}
