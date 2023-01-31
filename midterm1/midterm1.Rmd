@@ -126,7 +126,7 @@ ecosphere %>%
 
 Please provide the names of the students you have worked with with during the exam:
 ```{r}
-Tony, Elan
+#Tony, Elan
 ```
 
 Please be 100% sure your exam is saved, knitted, and pushed to your github repository. No need to submit a link on canvas, we will find your exam in your repository.
