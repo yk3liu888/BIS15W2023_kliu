@@ -176,9 +176,9 @@ life_history %>%
 
 3. Replace the placeholder values with NA and recheck.
 ```{r}
-life_history_tidy <- life_history %>% 
-  na_if("-999")
-life_history_tidy
+life_history %>% 
+  na_if("-999") %>% 
+  miss_var_summary(life_history)
 ```
 
 ## Wrap-up  
