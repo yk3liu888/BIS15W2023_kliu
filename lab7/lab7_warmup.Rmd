@@ -1,0 +1,14 @@
+---
+title: "lab7_warmup"
+author: "Kellie Liu"
+date: "2023-02-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+install.packages("naniar")
+```
+
