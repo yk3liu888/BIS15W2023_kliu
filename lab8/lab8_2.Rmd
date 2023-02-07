@@ -121,7 +121,7 @@ tb_data %>%
 ## Practice
 1. Load the `gene_exp.csv` data as a new object `gene_exp`. Are these data tidy? Use `pivot_wider()` to tidy the data.
 ```{r}
-gene_exp <- read.csv(here("lab8","data","gene_exp.csv"))
+gene_exp <- read_csv(here("lab8","data","gene_exp.csv"))
 gene_exp
 ```
 
@@ -150,7 +150,8 @@ For the last practice example, I will use data from the awesome [R Ladies Sydney
 
 1. Load the beachbugs data and have a look.
 ```{r}
-beachbugs <- read.csv(here("lab8","data","beachbugs_long.csv"))
+beachbugs <- read_csv(here("lab8","data","beachbugs_long.csv")) 
+# tidy for read_csv not read.csv
 beachbugs
 ```
 

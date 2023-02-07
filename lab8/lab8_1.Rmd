@@ -96,7 +96,7 @@ heartrate %>%
 ## Practice
 1. Import the file `relig_income.csv` and store it as a new object `relig_income`.  
 ```{r}
-relig_income <- read.csv(here("lab8","data","relig_income.csv"))
+relig_income <- read_csv(here("lab8","data","relig_income.csv"))
 relig_income
 ```
 
@@ -156,15 +156,21 @@ billboard %>%
 ## Practice  
 1. Import `plant_data.csv` as a new object `plant_data`.  
 ```{r}
-
+plant_data <- read_csv(here("lab8","data","plant_data.csv"))
+plant_data
 ```
 
 2. Why are these data not tidy?  
-
+Not all variables with one column.
 
 3. Use `pivot_longer()` to make the data tidy. Focus the data only on genotype, day, and measurement.  
 ```{r}
-
+plant_data %>% 
+  pivot_longer(-c(genotype, water_sched_prog, greenhouse),
+               names_to = "day",
+               values_to = "measurement",
+               values_drop_na = T
+               )
 ```
 
 ## Example 3: more than one variable in a column name
