@@ -16,6 +16,10 @@ output:
 2. Produce summaries of the number of NA's in a data set.   
 3. Replace values with `NA` in a data set as appropriate.  
 
+```{r}
+#install.packages("naniar")
+```
+
 ## Load the libraries
 ```{r}
 library("tidyverse")
@@ -44,7 +48,7 @@ Let's next check to see if our data has any NA's by evaluating everything logica
 
 Keep in mind, if the authors of the data represented NA's in another way, they will not be detected by R.  
 ```{r}
-is.na(msleep) # not do this normally
+#is.na(msleep) # not do this normally
 ```
 
 We also learned...
@@ -67,7 +71,8 @@ msleep %>%
 Here we can be more efficient and summarize the number of NA's over all of the variables.
 ```{r}
 msleep %>% 
-  summarise_all(~(sum(is.na(.)))) # ~ -> apply to all columns; . -> apply to all rows
+  summarise_all(~(sum(is.na(.)))) 
+# ~ -> apply to all columns; . -> apply to all rows
 ```
 
 This is much better, but we need to be careful. R can have difficulty interpreting missing data. This is especially true for categorical variables. Always do a reality check if the output doesn't make sense to you. A quick check never hurts and can save you from wasting time in the future or from drawing false conclusions.  
@@ -84,21 +89,22 @@ doi: 10.1890/15-0846.1 (URL: https://doi.org/10.1890/15-0846.1).
 
 1. Load the `amniota` data below and determine whether or not NA's are present. If they are present, how are they represented?
 ```{r}
-amniota <- readr::read_csv("data/amniota.csv") %>% 
-  #na_if("-999")
+amniota <- readr::read_csv("data/amniota.csv")
 ```
 
 ```{r}
-anyNA(amniota)
+any_na(amniota)
+```
+
+```{r}
+glimpse(amniota)
+summary(amniota)
 ```
 
 2. Use one of the tools explained above to summarize NA's in the data.
 ```{r}
-summary(amniota)
-```
-```{r}
 amniota %>% 
-  summarize(number_nas = sum(is.na(female_body_mass_at_maturity_g)))
+  summarise_all(~(sum(is.na(.))))
 ```
 
 3. What's going on here? Try using the `hist` function on one or more of the continuous variables.
@@ -165,8 +171,8 @@ life_history <- read_csv("data/mammal_lifehistories_v2.csv")
 1. Do you see any NA's? Try using naniar.
 ```{r}
 naniar::miss_var_summary(life_history)
-```
 # 0 means no NAs
+```
 
 2. Does this result seem likely? How are NA's represented in the data?
 ```{r}
@@ -177,8 +183,8 @@ life_history %>%
 3. Replace the placeholder values with NA and recheck.
 ```{r}
 life_history %>% 
-  na_if("-999") %>% 
-  miss_var_summary(life_history)
+  na_if(-999) %>% 
+  miss_var_summary()
 ```
 
 ## Wrap-up  
