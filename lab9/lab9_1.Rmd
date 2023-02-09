@@ -197,9 +197,9 @@ homerange %>%
 
 ```{r}
 homerange %>% 
-  filter(class == "mammalia") %>% 
-  ggplot(aes(x=trophic.guild)) + 
-  geom_bar()
+  filter(class == "mammalia") %>% #count(trophic.guild)
+  ggplot(aes(x=trophic.guild)) + #ggplot(aes(x=trophic.guild, y=n)) +
+  geom_bar() #geom_col()
 ```
 
 3. Make a bar plot that shows the masses of the top 10 smallest mammals.
@@ -209,7 +209,8 @@ homerange %>%
   filter(class == "mammalia") %>% 
   top_n(-10, log10.mass) %>% 
   ggplot(aes(x=common.name, y=log10.mass)) + 
-  geom_col()
+  geom_col()+
+  coord_flip() # x,y flip
 ```
 
 ## That's it! Let's take a break and then move on to part 2!  
