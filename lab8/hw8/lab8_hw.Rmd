@@ -108,10 +108,14 @@ mean_entero %>%
 ```
 
 9. What was the most polluted beach in 2018?
+```{r}
+glimpse(mean_entero)
+```
+
 
 ```{r}
 mean_entero %>% 
-  slice_max(mean_enterococci_cfu_100ml) %>% 
+  slice_max(mean_enterococci_cfu_100ml, n=1) %>% 
   filter(year == 2018)
 ```
 South Maroubra Rockpool was the most polluted beach in 2018.

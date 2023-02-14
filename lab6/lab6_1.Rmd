@@ -198,7 +198,7 @@ msleep %>%
 2. What does `NA` mean? How are NA's being treated by the summarize function?
 ```{r}
 msleep %>% 
-  filter(order == "Carnivara") %>% 
+  filter(order == "Carnivora") %>% 
   
 ```
 

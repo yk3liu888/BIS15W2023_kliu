@@ -116,6 +116,15 @@ penguins %>%
   summarize(across(contains("mm"), mean, na.rm=T))
 ```
 
+```{r}
+glimpse(penguins)
+```
+```{r}
+penguins %>% 
+  count(species) %>% 
+  n_distinct()
+```
+
 Here we summarize across all variables.
 ```{r}
 penguins %>%
