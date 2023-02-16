@@ -1,0 +1,47 @@
+---
+title: "lab11_warmup"
+author: "Kellie Liu"
+date: "2023-02-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+```{r}
+heartrate<-read_csv("data/heartrate.csv")
+```
+
+```{r}
+glimpse(heartrate)
+```
+```{r}
+names(heartrate)
+```
+```{r}
+heartrate %>% 
+  ggplot(aes(x=patient, y=a, fill=patient))+
+  geom_col()+
+  labs(title="Compare of Drug A",
+       x=NULL, #remove axes name
+       y="Heartrate")
+```
+```{r}
+heartrate %>% 
+  pivot_longer(-patient,
+               names_to = "drugs",
+               values_to = "heartrate") %>% 
+  ggplot(aes(x=drugs, y=heartrate, fill=drugs))+
+  geom_boxplot(alpha=0.7)+ # transparency of color
+  labs(title="Compare to Heartrate Drugs",
+       x="Drug",
+       y="Heartrate")
+```
+
