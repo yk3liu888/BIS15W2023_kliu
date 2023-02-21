@@ -1,7 +1,7 @@
 ---
 title: "Lab 11 Homework"
 author: "Kellie Liu"
-date: "2023-02-20"
+date: "2023-02-21"
 output:
   html_document:
     theme: spacelab
@@ -357,22 +357,24 @@ gapminder %>%
 
 
 ```r
-gm <- gapminder %>%
-  filter(year>=1952) %>%
-  mutate(year=as_factor(year)) %>% 
-  ggplot(aes(x=year, y=gdpPercap, fill=continent))+
-  geom_col(position="dodge")+
-  labs(title = "GDP Growth in each Continent since 1952", 
-       x="Year",
-       y="GDP")
+gapminder %>% 
+  filter(country==c("China", "India", "United States", "Indonesia", "Brazil")) %>% 
+  ggplot(aes(x=lifeExp))+
+  geom_density()+
+  facet_grid(continent~country, scales = "free_y")
 ```
 
-```r
-gm+theme_classic()+
-  theme(axis.text.x = element_text(angle = 60, hjust=1))
+```
+## Warning in `==.default`(country, c("China", "India", "United States",
+## "Indonesia", : longer object length is not a multiple of shorter object length
 ```
 
-![](lab11_hw_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+```
+## Warning in is.na(e1) | is.na(e2): longer object length is not a multiple of
+## shorter object length
+```
+
+![](lab11_hw_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences. 

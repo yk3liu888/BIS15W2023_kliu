@@ -184,18 +184,11 @@ gapminder %>%
 **10. Make one plot of your choice that uses faceting!**
 
 ```{r}
-gm <- gapminder %>%
-  filter(year>=1952) %>%
-  mutate(year=as_factor(year)) %>% 
-  ggplot(aes(x=year, y=gdpPercap, fill=continent))+
-  geom_col(position="dodge")+
-  labs(title = "GDP Growth in each Continent since 1952", 
-       x="Year",
-       y="GDP")
-```
-```{r}
-gm+theme_classic()+
-  theme(axis.text.x = element_text(angle = 60, hjust=1))
+gapminder %>% 
+  filter(country==c("China", "India", "United States", "Indonesia", "Brazil")) %>% 
+  ggplot(aes(x=lifeExp))+
+  geom_density()+
+  facet_grid(continent~country, scales = "free_y")
 ```
 
 ## Push your final code to GitHub!
