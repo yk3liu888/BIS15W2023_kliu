@@ -104,14 +104,16 @@ surgery %>%
   select(ccsmort30rate, ahrq_ccs)%>%
   group_by(ahrq_ccs) %>% 
   summarise(mean_mort=mean(ccsmort30rate))%>% 
-  arrange(mean_mort)
+  arrange(-mean_mort) %>% 
+  slice_head(n=5)
 ```
 ```{r}
 surgery %>% 
   select(ccscomplicationrate, ahrq_ccs)%>%
   group_by(ahrq_ccs) %>% 
   summarise(mean_com=mean(ccscomplicationrate))%>% 
-  arrange(mean_com)
+  arrange(-mean_com)%>% 
+  slice_head(n=5)
 ```
 
 8. (3 points) Make a plot that compares the `ccsmort30rate` for all listed `ahrq_ccs` procedures.
@@ -132,17 +134,6 @@ surgery %>%
   summarise(mort=sum(mort))
 ```
 
-10. (4 points) Make a plot that visualizes the chart from question #9. Make sure that the months are on the x-axis. Do a search online and figure out how to order the months Jan-Dec.
-```{r}
-surgery %>% 
-  mutate(mort=ifelse(mort30 == "Yes", 1, 0)) %>% 
-  select(month, mort) %>% 
-  group_by(month) %>% 
-  summarise(mort=sum(mort)) %>% 
-  ggplot(aes(x=month, y=mort, , group=mort30))+
-  geom_line()+
-  theme_linedraw()+ scale_x_discrete(limits = month.abb)
-```
 ```{r}
 surgery %>% 
   mutate(com=ifelse(complication == "Yes", 1, 0)) %>% 
@@ -150,15 +141,27 @@ surgery %>%
   group_by(month) %>% 
   summarise(com=sum(com))
 ```
+
+10. (4 points) Make a plot that visualizes the chart from question #9. Make sure that the months are on the x-axis. Do a search online and figure out how to order the months Jan-Dec.
+```{r}
+surgery %>% 
+  mutate(mort=ifelse(mort30 == "Yes", 1, 0)) %>% 
+  select(month, mort) %>% 
+  group_by(month) %>% 
+  summarise(mort=sum(mort)) %>% 
+  ggplot(aes(x=month, y=mort, fill = month))+
+  geom_col(alpha=0.5)+
+  theme_linedraw()+ scale_x_discrete(limits = month.abb)
+```
+
 ```{r}
 surgery %>% 
   mutate(com=ifelse(complication == "Yes", 1, 0)) %>% 
   select(month, com) %>% 
   group_by(month) %>% 
   summarise(com=sum(com))%>% 
-  summarise(mort=sum(mort)) %>% 
-  ggplot(aes(x=month, y=mort, , group=mort30))+
-  geom_line()+
+  ggplot(aes(x=month, y=com, fill = month))+
+  geom_col(alpha=0.5)+
   theme_linedraw()+ scale_x_discrete(limits = month.abb)
 ```
 
