@@ -6,7 +6,7 @@ output:
   html_document:
     theme: spacelab
     toc: no
-    keep.md: yes
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -86,8 +86,12 @@ wolves
 
 ```{r}
 wolves %>% 
-  filter(lat <= 48 ) %>% 
-  n_distinct("pop")
+  summarize(distinct_pop=n_distinct(pop))
+```
+
+```{r}
+wolves_lower <- wolves %>% 
+  filter(lat <= 48 )
 ```
 
 7. Use the range of the latitude and longitude to build an appropriate bounding box for your map.  
@@ -108,7 +112,7 @@ map2 <- get_map(bbox, maptype = "terrain-lines", source = "stamen")
 
 ```{r}
 ggmap(map2) + 
-  geom_point(data = wolves, aes(long, lat)) +
+  geom_point(data = wolves_lower, aes(long, lat)) +
   labs(x= "Longitude", y= "Latitude", title="Wolves in the Lower 48")
 ```
 
@@ -116,7 +120,7 @@ ggmap(map2) +
 
 ```{r}
 ggmap(map2) + 
-  geom_point(data = wolves, aes(x = long, y = lat, fill = pop, color = pop), size = 2) +
+  geom_point(data = wolves_lower, aes(x = long, y = lat, fill = pop, color = pop), size = 2) +
   labs(x = "Longitude", y = "Latitude", title = "Wolves in the Lower 48")
 ```
 
