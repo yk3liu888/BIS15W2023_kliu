@@ -398,13 +398,33 @@ hotspring_microbiome
 #### Take it further! 
 1. What is the most abundant bacterial species based on average abundance?
 ```{r}
-
+hotspring_microbiome %>% 
+  relocate(query_name, name, average_abund, average_containment_ani) %>% 
+  arrange(desc(average_abund)) %>% 
+  top_n(1, average_abund) %>% 
+  select(name)
 ```
 2. Make a bar plot of `name` and `average_abund`. 
 ```{r}
-
+theme_set(theme_minimal())
 ```
 
+```{r}
+p<- hotspring_microbiome %>% 
+  relocate(query_name, name, average_abund, average_containment_ani) %>% 
+  arrange(desc(average_abund))
+```
+
+```{r}
+p %>% 
+  ggplot(aes(x = name, y = average_abund, fill = name))+
+  geom_col()+
+  theme(legend.position = "none")+
+  coord_flip()+
+  labs(title = "Abundance of Microbes in Lemonade Creek Hot Spring",
+       x = NULL,
+       y = "Average Abundance")
+```
 
 3. Look up this species on wikipedia. are you surprised to find this in a hot spring?
 
